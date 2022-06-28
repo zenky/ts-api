@@ -1,0 +1,37 @@
+{
+  "name": "@zenky/api",
+  "version": "0.9.37",
+  "description": "Zenky API library.",
+  "author": "Timur Zurbaev <hello@zurbaev.ru>",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rimraf build && tsc && rollup -c rollup.config.js",
+    "lint": "eslint \"./src/**/*.ts\"",
+    "fix": "eslint --fix \"./src/**/*.ts\""
+  },
+  "types": "./dist/zenky.d.ts",
+  "keywords": [
+    "Zenky"
+  ],
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.75.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "typescript": "^4.7.2"
+  }
+}
