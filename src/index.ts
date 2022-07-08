@@ -12,4 +12,5 @@ export * from './content/index.js';
 export * from './customer/index.js';
 export * from './media/index.js';
 export * from './orders/index.js';
+export * from './promotions/index.js';
 export * from './store/index.js';
