@@ -33,6 +33,14 @@ export interface OrderPaymentsPreviewRequest {
   }[];
 }
 
+export interface OrderPaymentRequest {
+  method: string;
+  amount: number | string;
+  bill?: string | number;
+  card_token_id?: string;
+  save_card?: boolean;
+}
+
 export interface SubmitOrderRequest {
   city_id?: string;
   stock_id?: string;
@@ -48,13 +56,7 @@ export interface SubmitOrderRequest {
     birth_date?: string;
   };
   delivery_method?: string;
-  payments?: {
-    method: string;
-    amount: string | number;
-    bill?: string | number;
-    card_token_id?: string;
-    save_card?: boolean;
-  }[];
+  payments?: OrderPaymentRequest[];
   delivery_address?: DeliveryAddressRequest;
   on_premise?: {
     table: string;

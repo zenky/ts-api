@@ -1,4 +1,11 @@
-import { Order, OrderPaymentReceipt, OrderPaymentsPreview, OrderSettings, OrderSubmissionResult } from './types.js';
+import {
+  Order,
+  OrderPayment,
+  OrderPaymentReceipt,
+  OrderPaymentsPreview,
+  OrderSettings,
+  OrderSubmissionResult,
+} from './types.js';
 import { getOrderParams, getOrderUrl, useRequestWrapper } from '../api.js';
 import { AxiosInstance } from 'axios';
 import { ResourceRequest } from '../types.js';
@@ -6,6 +13,7 @@ import {
   CreateOrderRequest,
   OrderCredentials,
   OrderCustomerRequest,
+  OrderPaymentRequest,
   OrderPaymentsPreviewRequest,
   OrderProductVariantRequest,
   SubmitOrderRequest,
@@ -55,6 +63,15 @@ export async function getOrderPaymentTransactionReceipt(
     return axios.get(getOrderUrl(credentials, `/payments/${paymentId}/receipt`), {
       params: getOrderParams(credentials),
     });
+  });
+}
+
+export async function getPendingOrderPayment(
+  credentials: OrderCredentials,
+  request: OrderPaymentRequest,
+): Promise<OrderPayment> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.post(getOrderUrl(credentials, '/payments/pending'), request);
   });
 }
 
