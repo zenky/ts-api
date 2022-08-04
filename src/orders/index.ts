@@ -71,7 +71,9 @@ export async function getPendingOrderPayment(
   request: OrderPaymentRequest,
 ): Promise<OrderPayment> {
   return useRequestWrapper(async function (axios: AxiosInstance) {
-    return axios.post(getOrderUrl(credentials, '/payments/pending'), request);
+    return axios.post(getOrderUrl(credentials, '/payments/pending'), request, {
+      params: getOrderParams(credentials),
+    });
   });
 }
 
