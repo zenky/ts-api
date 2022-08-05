@@ -1,4 +1,4 @@
-import { DateTime, Enum, PaginatedResponse, PaginationRequest, ResourceRequest } from '../types.js';
+import { DateTime, Enum, PaginatedResponse, PaginationRequest, ResourceRequest, Visibility } from '../types.js';
 import { Medium } from '../media/index.js';
 import { getStoreUrl, usePaginationRequestWrapper, useRequestWrapper } from '../api.js';
 import { AxiosInstance } from 'axios';
@@ -27,7 +27,7 @@ export interface NestedCategory extends Category {
 }
 
 export interface NestedCategoriesRequest {
-  visibility?: string;
+  visibility?: Visibility;
   with?: string;
 }
 

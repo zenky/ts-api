@@ -1,4 +1,4 @@
-import { DateTime, PaginatedResponse, PaginationRequest, ResourceRequest } from '../types.js';
+import { DateTime, PaginatedResponse, PaginationRequest, Publication, ResourceRequest, Visibility } from '../types.js';
 import { Medium } from '../media/index.js';
 import { getStoreUrl, usePaginationRequestWrapper, useRequestWrapper } from '../api.js';
 import { AxiosInstance } from 'axios';
@@ -34,13 +34,13 @@ export interface Article {
 }
 
 export interface ArticleCategoriesPaginationRequest extends PaginationRequest {
-  visibility?: string;
+  visibility?: Visibility;
 }
 
 export interface ArticlesPaginationRequest extends PaginationRequest {
   category_id?: string;
-  publication?: string;
-  visibility?: string;
+  publication?: Publication;
+  visibility?: Visibility;
 }
 
 export async function getArticles(params: ArticlesPaginationRequest = {}): Promise<PaginatedResponse<Article>> {

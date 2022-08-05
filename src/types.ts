@@ -103,3 +103,15 @@ export interface PaginatedResponse<T> {
   items: T[];
   pagination: Pagination;
 }
+
+export enum Visibility {
+  Visible = 'visible',
+  Hidden = 'hidden',
+  All = 'all',
+}
+
+export enum Publication {
+  Published = 'published',
+  Unpublished = 'unpublished',
+  All = 'all',
+}

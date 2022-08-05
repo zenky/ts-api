@@ -1,5 +1,10 @@
-import { DateTime, PaginationRequest } from '../types.js';
+import { DateTime, PaginationRequest, Visibility } from '../types.js';
 import { City } from '../store/index.js';
+
+export enum OffersCityMode {
+  Strict = 'strict',
+  Default = 'default',
+}
 
 export interface OfferBanner {
   title: string | null;
@@ -35,5 +40,6 @@ export interface Offer {
 
 export interface OffersPaginationRequest extends PaginationRequest {
   city_id?: string;
-  visibility?: string;
+  city_mode?: OffersCityMode;
+  visibility?: Visibility;
 }

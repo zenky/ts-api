@@ -1,4 +1,4 @@
-import { PaginatedResponse, PaginationRequest, ResourceRequest } from '../../types.js';
+import { PaginatedResponse, PaginationRequest, ResourceRequest, Visibility } from '../../types.js';
 import { Product, ProductsPricesRange, ProductVariantPriceCalculationResult } from './types.js';
 import { getStoreUrl, usePaginationRequestWrapper, useRequestWrapper } from '../../api.js';
 import { AxiosInstance } from 'axios';
@@ -16,7 +16,7 @@ export interface ProductsPaginationRequest extends PaginationRequest {
   context_type?: string;
   min_price?: string | number;
   max_price?: string | number;
-  visibility?: string;
+  visibility?: Visibility;
   featured_categores?: boolean;
   promotion_reward?: boolean;
 }

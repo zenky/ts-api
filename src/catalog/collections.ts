@@ -1,4 +1,4 @@
-import { DateTime, Enum, PaginatedResponse, PaginationRequest, ResourceRequest } from '../types.js';
+import { DateTime, Enum, PaginatedResponse, PaginationRequest, ResourceRequest, Visibility } from '../types.js';
 import { Medium } from '../media/index.js';
 import { getStoreUrl, usePaginationRequestWrapper, useRequestWrapper } from '../api.js';
 import { AxiosInstance } from 'axios';
@@ -21,8 +21,8 @@ export interface ProductsCollection {
 }
 
 export interface ProductsCollectionsPaginationRequest extends PaginationRequest {
-  visibility?: string;
-  app_visibility?: string;
+  visibility?: Visibility;
+  app_visibility?: Visibility;
 }
 
 export async function getProductsCollections(params: ProductsCollectionsPaginationRequest = {}): Promise<PaginatedResponse<ProductsCollection>>  {
