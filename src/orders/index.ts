@@ -1,16 +1,22 @@
 import {
   Order,
+  OrderCheckoutResult,
+  OrderCheckoutTotal,
   OrderPayment,
   OrderPaymentReceipt,
   OrderPaymentsPreview,
   OrderSettings,
   OrderSubmissionResult,
 } from './types.js';
-import { getOrderParams, getOrderUrl, useRequestWrapper } from '../api.js';
+import { getOrderParams, getOrderUrl, usePlainRequestWrapper, useRequestWrapper } from '../api.js';
 import { AxiosInstance } from 'axios';
 import { ResourceRequest } from '../types.js';
 import {
   CreateOrderRequest,
+  OrderCheckoutCustomerRequest,
+  OrderCheckoutDeliveryRequest,
+  OrderCheckoutPaymentsRequest,
+  OrderCheckoutRequest,
   OrderCredentials,
   OrderCustomerRequest,
   OrderPaymentRequest,
@@ -118,6 +124,60 @@ export async function submitOrder(
 ): Promise<OrderSubmissionResult>  {
   return useRequestWrapper(async function (axios: AxiosInstance) {
     return axios.post(getOrderUrl(credentials, '/submit'), request, {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function setOrderCheckoutCustomer(
+  credentials: OrderCredentials,
+  request: OrderCheckoutCustomerRequest,
+): Promise<void> {
+  return usePlainRequestWrapper(async function (axios: AxiosInstance) {
+    await axios.post(getOrderUrl(credentials, '/checkout/customer'), request, {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function setOrderCheckoutDelivery(
+  credentials: OrderCredentials,
+  request: OrderCheckoutDeliveryRequest,
+): Promise<Order> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.post(getOrderUrl(credentials, '/checkout/delivery'), request, {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function setOrderCheckoutPayment(
+  credentials: OrderCredentials,
+  request: OrderCheckoutPaymentsRequest,
+): Promise<OrderPayment[]> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.post(getOrderUrl(credentials, '/checkout/payments'), request, {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function getOrderCheckoutTotal(
+  credentials: OrderCredentials,
+): Promise<OrderCheckoutTotal> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.get(getOrderUrl(credentials, '/checkout/total'), {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function checkoutOrder(
+  credentials: OrderCredentials,
+  request: OrderCheckoutRequest,
+): Promise<OrderCheckoutResult> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.post(getOrderUrl(credentials, '/checkout'), request, {
       params: getOrderParams(credentials),
     });
   });

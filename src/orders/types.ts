@@ -226,3 +226,27 @@ export interface OrderSubmissionResult {
   };
   order: Order;
 }
+
+export interface OrderCheckoutTotalPayment {
+  id: string;
+  method: Enum;
+  amount: Price;
+}
+
+export interface OrderCheckoutTotal {
+  min_price: Price | null;
+  subtotal: Price;
+  original_subtotal: Price;
+  delivery_price: Price | null;
+  discount: Price | null;
+  total: Price;
+  original_total: Price;
+  max_bonuses_payment: Price | null;
+  cashback: Price | null;
+  payments: OrderCheckoutTotalPayment[];
+}
+
+export interface OrderCheckoutResult {
+  confirmation_required: boolean;
+  order: Order;
+}

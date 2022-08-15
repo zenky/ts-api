@@ -68,3 +68,41 @@ export interface SubmitOrderRequest {
 export interface DeliveryAddressRequest extends AddressRequest {
   id?: string;
 }
+
+export interface OrderCheckoutCustomerRequest {
+  phone?: {
+    number: string;
+    country: string;
+  } | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  gender?: string | null;
+  birth_date?: string | null;
+  email?: string | null;
+}
+
+export interface OrderCheckoutDeliveryRequest {
+  delivery_method: string;
+  stock_id?: string;
+  on_premise?: {
+    table: string;
+  };
+  delivery_address?: DeliveryAddressRequest;
+  deliver_at?: string | null;
+}
+
+export interface OrderCheckoutPayment {
+  method: string;
+  amount?: number | string | null;
+  bill?: number | string | null;
+  card_token_id?: string;
+  save_card?: boolean;
+}
+
+export interface OrderCheckoutPaymentsRequest {
+  payments: OrderCheckoutPayment[];
+}
+
+export interface OrderCheckoutRequest {
+  notes?: string;
+}
