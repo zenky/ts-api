@@ -246,6 +246,11 @@ export interface OrderCheckoutTotal {
   payments: OrderCheckoutTotalPayment[];
 }
 
+export interface OrderCheckoutBonusesPaymentPreview {
+  bonuses: Price;
+  unpaid: Price;
+}
+
 export interface OrderCheckoutResult {
   confirmation_required: boolean;
   order: Order;

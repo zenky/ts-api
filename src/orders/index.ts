@@ -1,5 +1,6 @@
 import {
   Order,
+  OrderCheckoutBonusesPaymentPreview,
   OrderCheckoutResult,
   OrderCheckoutTotal,
   OrderPayment,
@@ -168,6 +169,17 @@ export async function getOrderCheckoutTotal(
   return useRequestWrapper(async function (axios: AxiosInstance) {
     return axios.get(getOrderUrl(credentials, '/checkout/total'), {
       params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function getOrderBonusesPaymentPreview(
+  credentials: OrderCredentials,
+  amount: string | number,
+): Promise<OrderCheckoutBonusesPaymentPreview> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.get(getOrderUrl(credentials, '/checkout/payments/bonuses'), {
+      params: getOrderParams(credentials, { amount }),
     });
   });
 }
