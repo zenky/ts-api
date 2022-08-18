@@ -253,5 +253,9 @@ export interface OrderCheckoutBonusesPaymentPreview {
 
 export interface OrderCheckoutResult {
   confirmation_required: boolean;
+  online_payment: {
+    required: boolean;
+    url: string | null;
+  };
   order: Order;
 }
