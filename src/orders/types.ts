@@ -231,6 +231,9 @@ export interface OrderCheckoutTotalPayment {
   id: string;
   method: Enum;
   amount: Price;
+  bill?: Price | null;
+  change?: Price | null;
+  save_card?: boolean;
 }
 
 export interface OrderCheckoutTotal {
@@ -238,6 +241,7 @@ export interface OrderCheckoutTotal {
   subtotal: Price;
   original_subtotal: Price;
   delivery_price: Price | null;
+  delivery_discount: Price | null;
   discount: Price | null;
   total: Price;
   original_total: Price;
