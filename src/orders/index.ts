@@ -3,11 +3,13 @@ import {
   OrderCheckoutBonusesPaymentPreview,
   OrderCheckoutResult,
   OrderCheckoutTotal,
+  OrderConfirmationResult,
   OrderPayment,
   OrderPaymentReceipt,
   OrderPaymentsPreview,
   OrderSettings,
   OrderSubmissionResult,
+  ResendOrderConfirmationCodeResult,
 } from './types.js';
 import { getOrderParams, getOrderUrl, usePlainRequestWrapper, useRequestWrapper } from '../api.js';
 import { AxiosInstance } from 'axios';
@@ -18,6 +20,7 @@ import {
   OrderCheckoutDeliveryRequest,
   OrderCheckoutPaymentsRequest,
   OrderCheckoutRequest,
+  OrderConfirmationRequest,
   OrderCredentials,
   OrderCustomerRequest,
   OrderPaymentRequest,
@@ -190,6 +193,28 @@ export async function checkoutOrder(
 ): Promise<OrderCheckoutResult> {
   return useRequestWrapper(async function (axios: AxiosInstance) {
     return axios.post(getOrderUrl(credentials, '/checkout'), request, {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+export async function confirmOrder(
+  credentials: OrderCredentials,
+  request: OrderConfirmationRequest,
+): Promise<OrderConfirmationResult> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.post(getOrderUrl(credentials, '/confirm'), request, {
+      params: getOrderParams(credentials),
+    });
+  });
+}
+
+
+export async function resendOrderConfirmationCode(
+  credentials: OrderCredentials,
+): Promise<ResendOrderConfirmationCodeResult> {
+  return useRequestWrapper(async function (axios: AxiosInstance) {
+    return axios.post(getOrderUrl(credentials, '/confirm/resend'), {}, {
       params: getOrderParams(credentials),
     });
   });

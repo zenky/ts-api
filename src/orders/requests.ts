@@ -106,3 +106,7 @@ export interface OrderCheckoutPaymentsRequest {
 export interface OrderCheckoutRequest {
   notes?: string;
 }
+
+export interface OrderConfirmationRequest {
+  code: string | number;
+}

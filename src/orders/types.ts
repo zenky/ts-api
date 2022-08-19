@@ -259,3 +259,12 @@ export interface OrderCheckoutResult {
   };
   order: Order;
 }
+
+export interface OrderConfirmationResult {
+  success: boolean;
+  token: string | null;
+}
+
+export interface ResendOrderConfirmationCodeResult {
+  success: boolean;
+}
