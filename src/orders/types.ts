@@ -10,7 +10,7 @@ export interface Order extends Discountable {
   stock_id: string | null;
   order_status_id: string | null;
   number: string | null;
-  token: string | null;
+  token: string;
   api_client: Enum | null;
   confirmation_status: Enum;
   delivery_method: Enum;
@@ -30,7 +30,7 @@ export interface Order extends Discountable {
   } | null;
   variants?: OrderProductVariant[];
   customer?: Customer | null;
-  delivery_addres?: Address | null;
+  delivery_address?: Address | null;
   city?: City | null;
   stock?: Stock | null;
   current_status?: OrderStatusChange | null;
