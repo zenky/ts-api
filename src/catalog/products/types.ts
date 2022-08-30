@@ -99,9 +99,12 @@ export interface ProductVariantPrice extends Discountable {
   updated_at: DateTime | null;
 }
 
-export interface ProductVariantPriceCalculationResult extends Discountable {
+export interface ProductVariantPriceCalculation extends Discountable {
   price: Price;
   original_price: Price | null;
+}
+
+export interface ProductVariantPriceCalculationResult extends ProductVariantPriceCalculation {
   modifiers_hash: string | null;
 }
 
