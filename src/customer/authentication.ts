@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
-import { getStoreUrl, usePlainRequestWrapper, useRequestWrapper } from '../api.js';
+import { getStoreUrl, useRequestWrapper } from '../api.js';
 import { Customer } from './types.js';
+import { ConfirmationMethod } from '../types.js';
 
 export interface AuthenticationPhone {
   number: string;
@@ -19,6 +20,17 @@ export interface AuthenticationResponse {
 
 export interface RegistrationResponse {
   confirmation_required: boolean;
+  method: ConfirmationMethod;
+}
+
+export interface ResendRegistrationCodeResponse {
+  confirmation_required: boolean;
+  method: ConfirmationMethod;
+}
+
+export interface PasswordResetCodeResponse {
+  success: boolean;
+  method: ConfirmationMethod;
 }
 
 export async function getAuthenticationStatus(phone: AuthenticationPhone): Promise<AuthenticationStatus> {
@@ -49,19 +61,15 @@ export async function confirm(phone: AuthenticationPhone, code: string, password
   });
 }
 
-export async function resendConfirmationCode(phone: AuthenticationPhone): Promise<boolean> {
-  return usePlainRequestWrapper(async function (axios: AxiosInstance, storeId: string) {
-    await axios.post(getStoreUrl(storeId, '/auth/register/resend'), { phone });
-
-    return true;
+export async function resendConfirmationCode(phone: AuthenticationPhone): Promise<ResendRegistrationCodeResponse> {
+  return useRequestWrapper(async function (axios: AxiosInstance, storeId: string) {
+    return axios.post(getStoreUrl(storeId, '/auth/register/resend'), { phone });
   });
 }
 
-export async function requestPasswordResetCode(phone: AuthenticationPhone): Promise<boolean> {
-  return usePlainRequestWrapper(async function (axios: AxiosInstance, storeId: string) {
-    await axios.post(getStoreUrl(storeId, '/auth/password/request'), { phone });
-
-    return true;
+export async function requestPasswordResetCode(phone: AuthenticationPhone): Promise<PasswordResetCodeResponse> {
+  return useRequestWrapper(async function (axios: AxiosInstance, storeId: string) {
+    return axios.post(getStoreUrl(storeId, '/auth/password/request'), { phone });
   });
 }
 

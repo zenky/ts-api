@@ -115,3 +115,8 @@ export enum Publication {
   Unpublished = 'unpublished',
   All = 'all',
 }
+
+export enum ConfirmationMethod {
+  Sms = 'sms',
+  Call = 'call',
+}
