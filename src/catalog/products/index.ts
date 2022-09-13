@@ -10,6 +10,7 @@ export interface ProductsPaginationRequest extends PaginationRequest {
   features?: object[];
   f?: object;
   city_id?: string;
+  stock_id?: string;
   collection_id?: string;
   group_id?: string;
   context_id?: string;

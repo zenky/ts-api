@@ -1,4 +1,4 @@
-import { ConfirmationMethod, DateTime, Discountable, Enum, Price } from '../types.js';
+import { ConfirmationMethod, DateTime, Discountable, Enum, Phone, Price } from '../types.js';
 import { Product, ProductVariant } from '../catalog/products/index.js';
 import { Customer } from '../customer/index.js';
 import { Address } from '../addresses/index.js';
@@ -259,6 +259,7 @@ export interface OrderCheckoutResult {
   confirmation: {
     required: boolean;
     method: ConfirmationMethod;
+    phone: Phone | null;
   };
   online_payment: {
     required: boolean;
