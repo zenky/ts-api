@@ -128,6 +128,12 @@ export interface StoreSettings {
   };
   orders: {
     authentication_method: Enum;
+    delivery: {
+      require_before_checkout: boolean;
+    };
+  };
+  products: {
+    filter_by_order_stock: boolean;
   };
   addresses: {
     resolver: Enum;
