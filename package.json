@@ -1,11 +1,18 @@
 {
   "name": "@zenky/api",
-  "version": "0.9.54",
+  "version": "0.9.55",
   "description": "Zenky API library.",
   "author": "Timur Zurbaev <hello@zurbaev.ru>",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.mjs"
+    }
+  },
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/zenky.d.ts",
   "files": [
     "dist/*"
   ],
@@ -14,11 +21,10 @@
     "lint": "eslint \"./src/**/*.ts\"",
     "fix": "eslint --fix \"./src/**/*.ts\""
   },
-  "types": "./dist/zenky.d.ts",
   "keywords": [
     "Zenky"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "axios": "^0.27.2"
   },
   "devDependencies": {
