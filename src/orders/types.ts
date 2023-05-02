@@ -76,6 +76,8 @@ export interface OrderProductVariant extends Discountable {
   promotion_id: string | null;
   promotion_reward_id: string | null;
   quantity: number;
+  has_measured_quantity: boolean;
+  measured_quantity: number;
   assembled_quantity: number | null;
   total_price: Price;
   original_total_price: Price | null;

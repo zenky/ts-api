@@ -24,6 +24,8 @@ export interface Product {
     short: string;
     full: string;
   };
+  has_quantity_step: boolean;
+  quantity_step: number;
   share: {
     url: string;
   } | null;
